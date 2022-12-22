@@ -1,7 +1,9 @@
 package br.com.rvrsmo.model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 public class Campo {
@@ -14,11 +16,15 @@ public class Campo {
 	private boolean marcado; 
 	
 	private List<Campo> vizinhos = new ArrayList<>();
-	private List<CampoObservador> observadores = new ArrayList<>();
+	private Set<CampoObservador> observadores = new HashSet<>();
 	
 	Campo(int linha, int coluna){  
 		this.LINHA = linha;
 		this.COLUNA = coluna;
+	}
+	
+	public void registrarObservador(CampoObservador observador) {
+		observadores.add(observador); 
 	}
 	
 	
