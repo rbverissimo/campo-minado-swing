@@ -27,6 +27,10 @@ public class Campo {
 		observadores.add(observador); 
 	}
 	
+	private void notificarObservadores(CampoEvento e) {
+		observadores.stream().forEach(o -> o.eventoOcorreu(this, e));
+	}
+	
 	
 	boolean adicionarVizinho(Campo vizinho) {
 		
@@ -61,7 +65,14 @@ public class Campo {
 	
 	
 	void alternarMacacao() { 
-		if(!aberto) marcado = !marcado; 
+		if(!aberto) {
+			marcado = !marcado; 
+			
+			if(marcado) {
+				notificarObservadores(CampoEvento.MARCAR);
+			} else notificarObservadores(CampoEvento.DESMARCAR);
+		
+		}
 	}
 	
 	
