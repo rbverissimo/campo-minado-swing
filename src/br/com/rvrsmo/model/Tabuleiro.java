@@ -93,7 +93,9 @@ public class Tabuleiro implements CampoObservador {
 		
 		for (int i = 0; i < QtdeLinhas; i++) {
 			for(int j = 0; j < QtdeColunas; j++) {
-				campos.add(new Campo(i, j));
+				Campo campo = new Campo(i, j);
+				campo.registrarObservador(this); // esse campo para ser observado;
+				campos.add(campo);
 			}
 			
 		}
