@@ -2,6 +2,7 @@ package br.com.rvrsmo.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 public class Tabuleiro implements CampoObservador {
@@ -11,6 +12,8 @@ public class Tabuleiro implements CampoObservador {
 	private int QtdeMinas;
 	
 	private final List<Campo> campos = new ArrayList<>();
+	private final List<Consumer<Boolean>> observadores = 
+			new ArrayList<>();
 
 	public Tabuleiro(int qtdeLinhas, int qtdeColunas, int qtdeMinas) {
 		QtdeLinhas = qtdeLinhas;
@@ -21,6 +24,15 @@ public class Tabuleiro implements CampoObservador {
 		associarVizinhos();
 		sortearMinas();
 		
+	}
+	
+	public void registrarObservador(Consumer<Boolean> o) {
+		observadores.add(o);
+	}
+	
+	public void notificarObservadores(boolean resultado) {
+		observadores.stream()
+			.forEach(o -> o.accept(resultado));
 	}
 	
 	protected Tabuleiro(int qtdeLinhas, int qtdeColunas) {
@@ -94,7 +106,7 @@ public class Tabuleiro implements CampoObservador {
 		for (int i = 0; i < QtdeLinhas; i++) {
 			for(int j = 0; j < QtdeColunas; j++) {
 				Campo campo = new Campo(i, j);
-				campo.registrarObservador(this); // esse campo para ser observado;
+				campo.registrarObservador(this); // esse tabuleiro para ser observado;
 				campos.add(campo);
 			}
 			
@@ -140,8 +152,10 @@ public class Tabuleiro implements CampoObservador {
 	public void eventoOcorreu(Campo c, CampoEvento e) {
 		if(e == CampoEvento.EXPLODIR) {
 			System.out.println("Perdeu :(");
+			notificarObservadores(false);
 		} else if(objetivoAlcancado()) {
 			System.out.println("Ganhou :)");
+			notificarObservadores(true);
 		}
 	}
 
