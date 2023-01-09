@@ -81,8 +81,11 @@ public class Campo {
 			aberto = true;
 			
 			if(minado) {
-				//TODO implementar nova versão
+				notificarObservadores(CampoEvento.EXPLODIR);
+				return true; 
 			}
+			
+			setAberto(aberto);
 			
 			if(vizinhoSeguro()) {
 				vizinhos.forEach(v -> v.abrir());
@@ -97,6 +100,7 @@ public class Campo {
 	
 	void setAberto(boolean aberto) {
 		this.aberto = aberto;
+		if(aberto) notificarObservadores(CampoEvento.ABRIR);
 	}
 
 
