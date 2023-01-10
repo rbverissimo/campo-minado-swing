@@ -7,9 +7,9 @@ import java.util.function.Predicate;
 
 public class Tabuleiro implements CampoObservador {
 	
-	private int QtdeLinhas;
-	private int QtdeColunas;
-	private int QtdeMinas;
+	private final int QtdeLinhas;
+	private final int QtdeColunas;
+	private final int QtdeMinas;
 	
 	private final List<Campo> campos = new ArrayList<>();
 	private final List<Consumer<ResultadoEvento>> observadores = 
@@ -35,14 +35,14 @@ public class Tabuleiro implements CampoObservador {
 			.forEach(o -> o.accept(new ResultadoEvento(resultado)));
 	}
 	
-	protected Tabuleiro(int qtdeLinhas, int qtdeColunas) {
-		QtdeLinhas = qtdeLinhas;
-		QtdeColunas = qtdeColunas;
-		
-		gerarCampos();
-		associarVizinhos(); 
-		
-	}
+	/*
+	 * protected Tabuleiro(int qtdeLinhas, int qtdeColunas) { QtdeLinhas =
+	 * qtdeLinhas; QtdeColunas = qtdeColunas;
+	 * 
+	 * gerarCampos(); associarVizinhos();
+	 * 
+	 * }
+	 */
 	
 	public boolean isCampoAberto(int linha, int coluna) {
 		return campos.parallelStream()
@@ -157,5 +157,15 @@ public class Tabuleiro implements CampoObservador {
 			.forEach(c -> c.setAberto(true));
 			
 		}
+
+		public int getQtdeLinhas() {
+			return QtdeLinhas;
+		}
+
+		public int getQtdeColunas() {
+			return QtdeColunas;
+		}
+		
+		
 
 }
