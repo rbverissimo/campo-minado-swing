@@ -12,7 +12,7 @@ public class Tabuleiro implements CampoObservador {
 	private int QtdeMinas;
 	
 	private final List<Campo> campos = new ArrayList<>();
-	private final List<Consumer<Boolean>> observadores = 
+	private final List<Consumer<ResultadoEvento>> observadores = 
 			new ArrayList<>();
 
 	public Tabuleiro(int qtdeLinhas, int qtdeColunas, int qtdeMinas) {
@@ -26,13 +26,13 @@ public class Tabuleiro implements CampoObservador {
 		
 	}
 	
-	public void registrarObservador(Consumer<Boolean> o) {
+	public void registrarObservador(Consumer<ResultadoEvento> o) {
 		observadores.add(o);
 	}
 	
 	private void notificarObservadores(boolean resultado) {
 		observadores.stream()
-			.forEach(o -> o.accept(resultado));
+			.forEach(o -> o.accept(new ResultadoEvento(resultado)));
 	}
 	
 	protected Tabuleiro(int qtdeLinhas, int qtdeColunas) {
