@@ -30,7 +30,7 @@ public class Tabuleiro implements CampoObservador {
 		observadores.add(o);
 	}
 	
-	public void notificarObservadores(boolean resultado) {
+	private void notificarObservadores(boolean resultado) {
 		observadores.stream()
 			.forEach(o -> o.accept(resultado));
 	}
