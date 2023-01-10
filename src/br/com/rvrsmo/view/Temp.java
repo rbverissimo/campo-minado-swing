@@ -9,6 +9,11 @@ public class Temp {
 		
 		// tabuleiro.abrirCampo(2, 2);
 		
+		tabuleiro.registrarObservador(e -> {
+			if(e.isGanhou()) {
+				System.out.println("ganhou!!! :))");
+			} else System.out.println("perdeu :((( ");
+		});
 		
 		tabuleiro.marcarCampo(0, 0);
 		tabuleiro.marcarCampo(0, 1);
