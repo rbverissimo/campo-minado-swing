@@ -26,6 +26,11 @@ public class Tabuleiro implements CampoObservador {
 		
 	}
 	
+	// Esse é o método que vai "ler" todos os campos do Tabuleiro
+	public void paraCada(Consumer<Campo> c) {
+		campos.forEach(c);
+	}
+	
 	public void registrarObservador(Consumer<ResultadoEvento> o) {
 		observadores.add(o);
 	}
