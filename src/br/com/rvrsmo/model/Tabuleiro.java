@@ -58,19 +58,12 @@ public class Tabuleiro implements CampoObservador {
 	
 	
 	public void abrirCampo(int linha, int coluna) {
-		try {
 			campos.parallelStream()
 			.filter(c -> c.getLINHA() == linha && c.getCOLUNA() == coluna)
 			.findFirst()
 			.ifPresent(c -> c.abrir());
-			
-		} catch (Exception e) {
-			//FIXME Ajustar a implementação do método abrir
-			campos.forEach(c -> c.setAberto(true));
-			throw e;
 		}
-		
-	}
+	
 	
 	public boolean isCampoMarcado(int linha, int coluna) {
 		return campos.parallelStream()
@@ -151,12 +144,18 @@ public class Tabuleiro implements CampoObservador {
 	@Override
 	public void eventoOcorreu(Campo c, CampoEvento e) {
 		if(e == CampoEvento.EXPLODIR) {
-			System.out.println("Perdeu :(");
+			mostrarMinas();
 			notificarObservadores(false);
 		} else if(objetivoAlcancado()) {
-			System.out.println("Ganhou :)");
 			notificarObservadores(true);
 		}
 	}
+	
+	// Quando o usuário perder o jogo, mostrar os lugares que estavam minados
+		private void mostrarMinas() {
+			campos.stream().filter(c -> c.isMinado())
+			.forEach(c -> c.setAberto(true));
+			
+		}
 
 }
