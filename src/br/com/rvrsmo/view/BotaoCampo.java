@@ -70,6 +70,30 @@ public class BotaoCampo extends JButton implements CampoObservador, MouseListene
 		setBackground(BG_PADRAO);
 		setBorder(BorderFactory.createLineBorder(Color.GRAY));
 		
+		switch (c.minasNaVizinhanca()) {
+		case 1:
+			setForeground(TEXTO_VERDE);
+			break;
+		case 2:
+			setForeground(Color.BLUE);
+			break;
+		case 3:
+			setForeground(Color.YELLOW);
+			break;
+		case 4:
+		case 5:
+		case 6:
+			setForeground(Color.RED);
+			break;
+		default:
+			setForeground(Color.PINK);
+	
+		}
+		
+		String valor = !c.vizinhoSeguro() ?
+				c.minasNaVizinhanca() + "" : "";
+		setText(valor);
+		
 	}
 
 	public void mousePressed(MouseEvent e) {
