@@ -159,6 +159,7 @@ public class Tabuleiro implements CampoObservador {
 	// Quando o usuário perder o jogo, mostrar os lugares que estavam minados
 		private void mostrarMinas() {
 			campos.stream().filter(c -> c.isMinado())
+			.filter(c -> !c.isMarcado())
 			.forEach(c -> c.setAberto(true));
 			
 		}
