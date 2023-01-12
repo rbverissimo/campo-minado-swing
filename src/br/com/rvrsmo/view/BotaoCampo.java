@@ -2,6 +2,7 @@ package br.com.rvrsmo.view;
 
 import java.awt.Color;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
 import br.com.rvrsmo.model.Campo;
@@ -24,7 +25,7 @@ public class BotaoCampo extends JButton implements CampoObservador {
 	
 	public BotaoCampo(Campo c) {
 		this.c  = c;
-		setBackground();
+		setBorder(BorderFactory.createBevelBorder(0));
 		c.registrarObservador(this);
 	}
 
