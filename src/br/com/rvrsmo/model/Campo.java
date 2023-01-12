@@ -153,7 +153,7 @@ public class Campo {
 		
 	}
 	
-	long minasNaVizinhanca() {
+	public long minasNaVizinhanca() {
 		return vizinhos.stream()
 				.filter(v -> v.minado)
 				.count();

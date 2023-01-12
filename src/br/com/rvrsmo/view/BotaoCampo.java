@@ -67,10 +67,19 @@ public class BotaoCampo extends JButton implements CampoObservador, MouseListene
 	}
 
 	private void aplicarEstiloAbrir() {
-		// TODO Auto-generated method stub
+		setBackground(BG_PADRAO);
+		setBorder(BorderFactory.createLineBorder(Color.GRAY));
 		
 	}
 
+	public void mousePressed(MouseEvent e) {
+		if(e.getButton() == 1) {
+			c.abrir();
+		} else {
+			c.alternarMacacao();
+		}
+	}
+	
 	public void mouseClicked(MouseEvent e) {}
 
 	public void mouseReleased(MouseEvent e) {}
