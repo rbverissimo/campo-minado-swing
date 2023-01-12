@@ -52,17 +52,20 @@ public class BotaoCampo extends JButton implements CampoObservador, MouseListene
 	}
 
 	private void aplicarEstiloPadrao() {
-		// TODO Auto-generated method stub
+		setBackground(BG_PADRAO);
+		setText("");
 		
 	}
 
 	private void aplicarEstiloExplodir() {
-		// TODO Auto-generated method stub
+		setBackground(BG_EXPLODIR);
+		setText("X");
 		
 	}
 
 	private void aplicarEstiloMarcar() {
-		// TODO Auto-generated method stub
+		setBackground(BG_MARCAR);
+		setText("M");
 		
 	}
 
