@@ -1,5 +1,7 @@
 package br.com.rvrsmo.view;
 
+import java.awt.Color;
+
 import javax.swing.JButton;
 
 import br.com.rvrsmo.model.Campo;
@@ -13,8 +15,17 @@ public class BotaoCampo extends JButton implements CampoObservador {
 	 * essa classe implementa graficamente as logicas do Campo (Model)
 	 */
 	
+	private final Color BG_PADRAO = new Color(184, 184, 184);
+	private final Color BG_MARCAR = new Color(8, 179, 247); 
+	private final Color BG_EXPLODIR = new Color(189, 66, 68); 
+	private final Color TEXTO_VERDE = new Color(0, 100, 0); 
+	
+	private Campo c;
+	
 	public BotaoCampo(Campo c) {
-		c.registrarObservador(this); 
+		this.c  = c;
+		setBackground();
+		c.registrarObservador(this);
 	}
 
 	@Override
