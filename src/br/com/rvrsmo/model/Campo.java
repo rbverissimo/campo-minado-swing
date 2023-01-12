@@ -64,7 +64,7 @@ public class Campo {
 	}
 	
 	
-	void alternarMacacao() { 
+	public void alternarMacacao() { 
 		if(!aberto) {
 			marcado = !marcado; 
 			
@@ -76,7 +76,7 @@ public class Campo {
 	}
 	
 	
-	boolean abrir() {
+	public boolean abrir() {
 		if(!marcado && !aberto) {
 			aberto = true;
 			

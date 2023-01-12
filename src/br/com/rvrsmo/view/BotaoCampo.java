@@ -1,6 +1,8 @@
 package br.com.rvrsmo.view;
 
 import java.awt.Color;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -10,7 +12,7 @@ import br.com.rvrsmo.model.CampoEvento;
 import br.com.rvrsmo.model.CampoObservador;
 
 @SuppressWarnings("serial")
-public class BotaoCampo extends JButton implements CampoObservador {
+public class BotaoCampo extends JButton implements CampoObservador, MouseListener {
 	
 	/*
 	 * essa classe implementa graficamente as logicas do Campo (Model)
@@ -25,6 +27,7 @@ public class BotaoCampo extends JButton implements CampoObservador {
 	
 	public BotaoCampo(Campo c) {
 		this.c  = c;
+		setBackground(BG_PADRAO);
 		setBorder(BorderFactory.createBevelBorder(0));
 		c.registrarObservador(this);
 	}
@@ -67,5 +70,13 @@ public class BotaoCampo extends JButton implements CampoObservador {
 		// TODO Auto-generated method stub
 		
 	}
+
+	public void mouseClicked(MouseEvent e) {}
+
+	public void mouseReleased(MouseEvent e) {}
+
+	public void mouseEntered(MouseEvent e) {}
+
+	public void mouseExited(MouseEvent e) {}
 
 }
