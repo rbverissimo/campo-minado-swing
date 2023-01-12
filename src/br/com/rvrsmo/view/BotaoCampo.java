@@ -14,7 +14,7 @@ public class BotaoCampo extends JButton implements CampoObservador {
 	 */
 	
 	public BotaoCampo(Campo c) {
-		// TODO Auto-generated constructor stub
+		c.registrarObservador(this); 
 	}
 
 	@Override
